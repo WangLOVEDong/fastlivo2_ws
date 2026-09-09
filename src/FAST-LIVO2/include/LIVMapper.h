@@ -24,7 +24,7 @@ which is included as part of this source code package.
 class LIVMapper
 {
 public:
-  LIVMapper(ros::NodeHandle &nh);
+  LIVMapper(ros::NodeHandle &nh);     //构造函数，进行很多数据初始化和参数读取
   ~LIVMapper();
   void initializeSubscribersAndPublishers(ros::NodeHandle &nh, image_transport::ImageTransport &it);
   void initializeComponents();

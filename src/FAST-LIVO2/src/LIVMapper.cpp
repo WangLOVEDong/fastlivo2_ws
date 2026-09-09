@@ -274,7 +274,7 @@ void LIVMapper::stateEstimationAndMapping()
 
 void LIVMapper::handleVIO() 
 {
-  euler_cur = RotMtoEuler(_state.rot_end);
+  euler_cur = RotMtoEuler(_state.rot_end);  //读取状态中的旋转矩阵，并将其转换为欧拉角表示。
   // fout_pre：LiDAR 校正前的预测状态。
   fout_pre << std::setw(20) << LidarMeasures.last_lio_update_time - _first_lidar_time << " " << euler_cur.transpose() * 57.3 << " "
             << _state.pos_end.transpose() << " " << _state.vel_end.transpose() << " " << _state.bias_g.transpose() << " "
@@ -318,7 +318,7 @@ void LIVMapper::handleVIO()
 
 void LIVMapper::handleLIO() 
 {    
-  euler_cur = RotMtoEuler(_state.rot_end);
+  euler_cur = RotMtoEuler(_state.rot_end);   //读取状态中的旋转矩阵，并将其转换为欧拉角表示。
   fout_pre << setw(20) << LidarMeasures.last_lio_update_time - _first_lidar_time << " " << euler_cur.transpose() * 57.3 << " "
            << _state.pos_end.transpose() << " " << _state.vel_end.transpose() << " " << _state.bias_g.transpose() << " "
            << _state.bias_a.transpose() << " " << V3D(_state.inv_expo_time, 0, 0).transpose() << endl;
@@ -331,31 +331,79 @@ void LIVMapper::handleLIO()
 
   double t0 = omp_get_wtime();
 
+  /*
+  avia.yaml 中 配置了  preprocess:   filter_size_surf: 0.1 表示体素边长为0.1m
+  启动时，YAML 被加载到 ROS 参数服务器；程序再读取：
+    nh.param<double>(
+    "preprocess/filter_size_surf", // ROS 参数名称
+    filter_size_surf_min,         // 把读到的值存入这个 double 变量
+    0.5);                        // 找不到参数时使用的默认值
+  因此，加载上述 YAML 后，filter_size_surf_min 是 0.1，不是默认的 0.5。
+
+  第一行 setInputCloud()：输入点云指针，返回 void，告诉滤波器“这次处理哪份点云”，此时还没有开始降采样。
+  第二行 filter()：输入一个用于接收结果的点云对象，返回 void，实际执行降采样，把结果写入 *feats_down_body。
+  */
   downSizeFilterSurf.setInputCloud(feats_undistort);
   downSizeFilterSurf.filter(*feats_down_body);
   
   double t_down = omp_get_wtime();
 
   feats_down_size = feats_down_body->points.size();
+
+  //将下采样点云交给地图管理对象
   voxelmap_manager->feats_down_body_ = feats_down_body;
+  
+  //前三个参数分别是 当前IMU姿态，当前IMU在世界坐标系位置，输入：Lidar点云 
+  //最后一个参数是输出：世界坐标系下的点云
   transformLidar(_state.rot_end, _state.pos_end, feats_down_body, feats_down_world);
+  
+  /*
+    第一句共享世界坐标系点云，第二句复制点数。后续地图模块就有了：
+    feats_down_body_  ：LiDAR 系点云
+    feats_down_world_ ：世界系点云
+    feats_down_size_  ：点数                      */  
   voxelmap_manager->feats_down_world_ = feats_down_world;
   voxelmap_manager->feats_down_size_ = feats_down_size;
   
   if (!lidar_map_inited) 
   {
     lidar_map_inited = true;
-    voxelmap_manager->BuildVoxelMap();
+    voxelmap_manager->BuildVoxelMap();   //如果是第一次处理点云，就建立体素地图
   }
 
   double t1 = omp_get_wtime();
 
-  voxelmap_manager->StateEstimation(state_propagat);
+  // handleLIO() 的核心： 点云与地图的匹配结果，校正 IMU 预测的状态。
+  /** 输入：
+      state_propagat：StatesGroup，processImu() 得到的预测状态，包含姿态、位置、速度、零偏等。
+      地图管理器中已经设置好的下采样点云，以及已有的体素地图。
+    作用：将当前点云与地图中的平面匹配，通过迭代滤波更新状态。结果保存在地图管理器内部。
+  */
+  voxelmap_manager->StateEstimation(state_propagat);  //超级重要
+  /*取回更新后的状态：
+    两边都是 StatesGroup 类型。
+    这句把地图管理器得到的校正结果复制回 LIVMapper 的 _state，供后续发布位姿、视觉更新等使用。
+  */
   _state = voxelmap_manager->state_;
+  /*取回点及其不确定性信息：
+    两边都是 vector<pointWithVar>，即一个存放 pointWithVar 结构体的数组。
+    每个元素包含点的坐标、协方差等信息，供后续地图更新、视觉处理使用。
+    这里纠正我前面的说法：_pv_list 不是单纯的“平面列表”，主要是点及其不确定性信息的集合。*/
   _pv_list = voxelmap_manager->pv_list_;
+  /*总结：
+      MU 预测状态 state_propagat
+            + 当前点云 + 已有地图
+                        ↓
+                StateEstimation()
+                        ↓
+            更新状态 → _state
+            点及协方差信息 → _pv_list
+  */
 
   double t2 = omp_get_wtime();
 
+  /*把最新状态和时间提供给实时 IMU 传播模块，用于生成高频预测位姿。
+    关闭后，常规 LIO/VIO 更新仍可运行，但没有这一路高频传播输出。*/
   if (imu_prop_enable) 
   {
     ekf_finish_once = true;
@@ -363,7 +411,7 @@ void LIVMapper::handleLIO()
     latest_ekf_time = LidarMeasures.last_lio_update_time;
     state_update_flg = true;
   }
-
+  /*把轨迹写入文件，便于后续查看、评估；关闭不会改变状态估计结果，只是不保存轨迹。写文件会增加少量耗时。*/
   if (pose_output_en) 
   {
     static bool pos_opend = false;
@@ -387,64 +435,143 @@ void LIVMapper::handleLIO()
             << q.x() << " " << q.y() << " " << q.z() << " " << q.w() << std::endl;
   }
   
+  //将当前估计的位姿等信息组装成里程计消息并发布，供 RViz 或其他节点使用。
   euler_cur = RotMtoEuler(_state.rot_end);
   geoQuat = tf::createQuaternionMsgFromRollPitchYaw(euler_cur(0), euler_cur(1), euler_cur(2));
   publish_odometry(pubOdomAftMapped);
 
   double t3 = omp_get_wtime();
 
+  //地图更新：把当前点云及其不确定性信息加入体素地图，更新地图状态。
+  /*创建世界坐标系点云：world_lidar 是点云智能指针，指向一份新建的空点云。 */
   PointCloudXYZI::Ptr world_lidar(new PointCloudXYZI());
-  transformLidar(_state.rot_end, _state.pos_end, feats_down_body, world_lidar);
+  /*重新把当前点云变换到世界坐标系 ，之前变换的世界坐标系点云是点云匹配前的预测状态，这里是点云匹配矫正更新后的状态*/
+  transformLidar(
+      _state.rot_end, 
+      _state.pos_end, 
+      feats_down_body, 
+      world_lidar);
+
   for (size_t i = 0; i < world_lidar->points.size(); i++) 
   {
-    voxelmap_manager->pv_list_[i].point_w << world_lidar->points[i].x, world_lidar->points[i].y, world_lidar->points[i].z;
+    /*保存点的最终世界坐标：*/
+    voxelmap_manager->pv_list_[i].point_w 
+         << world_lidar->points[i].x, 
+            world_lidar->points[i].y, 
+            world_lidar->points[i].z;
+    /*body_cov_list_[i]：该点由雷达测量产生的坐标不确定性。
+      cross_mat_list_[i]：该点对应的反对称矩阵，用来计算姿态误差会怎样影响点的位置。*/
     M3D point_crossmat = voxelmap_manager->cross_mat_list_[i];
     M3D var = voxelmap_manager->body_cov_list_[i];
-    var = (_state.rot_end * extR) * var * (_state.rot_end * extR).transpose() +
-          (-point_crossmat) * _state.cov.block<3, 3>(0, 0) * (-point_crossmat).transpose() + _state.cov.block<3, 3>(3, 3);
-    voxelmap_manager->pv_list_[i].var = var;
-  }
-  voxelmap_manager->UpdateVoxelMap(voxelmap_manager->pv_list_);
-  std::cout << "[ LIO ] Update Voxel Map" << std::endl;
-  _pv_list = voxelmap_manager->pv_list_;
-  
-  double t4 = omp_get_wtime();
+    /*var = 雷达测量误差
+            + 姿态估计误差
+            + 位置估计误差;
 
-  if(voxelmap_manager->config_setting_.map_sliding_en)
+    第一项：把点在 LiDAR 坐标系中的测量协方差，旋转到世界坐标系。
+     extR             LiDAR → IMU 的外参旋转
+    _state.rot_end     IMU → 世界坐标系的旋转   
+    所以： _state.rot_end * extR 表示从 LiDAR 坐标系旋转到世界坐标系。  
+          
+    第二项：加入姿态不确定性对点坐标的影响。
+     是状态协方差中的姿态部分。雷达距离越远，同样大小的姿态误差通常会造成更大的点位置偏差，
+     point_crossmat 就用于描述这种关系。
+
+    第三项：是状态协方差中的位置部分。机器人自身位置不确定，变换后的世界点自然也会不确定。 */
+
+    var = (_state.rot_end * extR)      
+          * var 
+          * (_state.rot_end * extR).transpose()
+          +
+          (-point_crossmat) 
+          * _state.cov.block<3, 3>(0, 0) 
+          * (-point_crossmat).transpose() 
+          + 
+          _state.cov.block<3, 3>(3, 3);
+
+    //把这个点最终的世界坐标协方差保存到 pointWithVar::var。
+    voxelmap_manager->pv_list_[i].var = var; 
+  }
+
+  /*把当前帧校正后的点加入 Voxel Map。 
+      根据 point_w 找到所属体素
+    → 空体素中创建新点/平面
+    → 已有体素中融合新点
+    → 更新体素的均值、协方差和平面*/
+  voxelmap_manager->UpdateVoxelMap(voxelmap_manager->pv_list_);
+  std::cout << "[ LIO ] Update Voxel Map" << std::endl;    //只向终端打印“地图已经更新”
+  _pv_list = voxelmap_manager->pv_list_;    //把地图管理器中的当前点和协方差信息复制到 LIVMapper::_pv_list。
+  /*当前 LiDAR 点 + 协方差
+    → UpdateVoxelMap() 更新 LiDAR 地图
+    → 复制到 _pv_list
+    → 后续 handleVIO() 使用*/
+
+
+  double t4 = omp_get_wtime();
+  //用于控制“局部地图滑动”，避免地图随着运行无限增大。
+  /*根据当前 LiDAR/IMU 位置移动局部地图范围
+    → 保留当前位置附近的体素
+    → 删除或忽略距离过远的旧体素
+    → 控制地图规模和计算量
+    它不会直接修改当前估计状态 _state，主要影响后续点云匹配能够使用的地图范围。
+      UpdateVoxelMap() 加入当前帧
+    → mapSliding() 检查局部地图范围
+    → 保留附近地图
+    → 后续帧继续匹配
+    */
+  if(voxelmap_manager->config_setting_.map_sliding_en)  //这里默认关的
   {
     voxelmap_manager->mapSliding();
   }
   
-  PointCloudXYZI::Ptr laserCloudFullRes(dense_map_en ? feats_undistort : feats_down_body);
-  int size = laserCloudFullRes->points.size();
-  PointCloudXYZI::Ptr laserCloudWorld(new PointCloudXYZI(size, 1));
+  /*dense_map_en == true
+    → 使用 feats_undistort
+    → 点比较多，显示更稠密
 
+    dense_map_en == false
+    → 使用 feats_down_body
+    → 使用降采样点云，计算量更小.
+    
+    yaml中配置 dense_map_en: true 所以用的是feats_undistort 更加稠密*/
+  PointCloudXYZI::Ptr laserCloudFullRes(dense_map_en ? feats_undistort : feats_down_body);
+  //size 保存待发布点云的点数
+  int size = laserCloudFullRes->points.size();
+  //创建一份拥有 size 宽度size  高度1
+  PointCloudXYZI::Ptr laserCloudWorld(new PointCloudXYZI(size, 1));
   for (int i = 0; i < size; i++) 
   {
+    /*函数内部实际执行：
+      p_global =
+          _state.rot_end
+          * (extR * p_body + extT)
+          + _state.pos_end;
+      也就是：
+      LiDAR 坐标点
+      → 利用 extR、extT 变到 IMU 坐标系
+      → 利用当前状态姿态和位置变到世界坐标系*/
     RGBpointBodyToWorld(&laserCloudFullRes->points[i], &laserCloudWorld->points[i]);
   }
+  //pcl_w_wait_pub 是等待发布或等待视觉处理的世界坐标点云。
   *pcl_w_wait_pub = *laserCloudWorld;
-
+  //这里img_en=1，所以不执行， 点云会留给后面的 handleVIO() 着色和发布。
   if (!img_en) publish_frame_world(pubLaserCloudFullRes, vio_manager);
+  //当前配置为 false，所以跳过。
   if (pub_effect_point_en) publish_effect_world(pubLaserCloudEffect, voxelmap_manager->ptpl_list_);
+  //如果启用平面地图发布，就把 Voxel Map 中识别到的平面发布出来。当前同样为 false。
   if (voxelmap_manager->config_setting_.is_pub_plane_map_) voxelmap_manager->pubVoxelMap();
+
+  /*publish_path()：发布累计运动轨迹。
+    publish_mavros()：发布当前位姿给 MAVROS 或其他位姿订阅者。
+    这部分不会再修改 _state，主要负责：
+        选择稠密或降采样点云
+        → 转换到世界坐标系
+        → 保存给 VIO
+        → 发布点云、轨迹和位姿*/
   publish_path(pubPath);
   publish_mavros(mavros_pose_publisher);
 
   frame_num++;
   aver_time_consu = aver_time_consu * (frame_num - 1) / frame_num + (t4 - t0) / frame_num;
 
-  // aver_time_icp = aver_time_icp * (frame_num - 1) / frame_num + (t2 - t1) / frame_num;
-  // aver_time_map_inre = aver_time_map_inre * (frame_num - 1) / frame_num + (t4 - t3) / frame_num;
-  // aver_time_solve = aver_time_solve * (frame_num - 1) / frame_num + (solve_time) / frame_num;
-  // aver_time_const_H_time = aver_time_const_H_time * (frame_num - 1) / frame_num + solve_const_H_time / frame_num;
-  // printf("[ mapping time ]: per scan: propagation %0.6f downsample: %0.6f match: %0.6f solve: %0.6f  ICP: %0.6f  map incre: %0.6f total: %0.6f \n"
-  //         "[ mapping time ]: average: icp: %0.6f construct H: %0.6f, total: %0.6f \n",
-  //         t_prop - t0, t1 - t_prop, match_time, solve_time, t3 - t1, t5 - t3, t5 - t0, aver_time_icp, aver_time_const_H_time, aver_time_consu);
-
-  // printf("\033[1;36m[ LIO mapping time ]: current scan: icp: %0.6f secs, map incre: %0.6f secs, total: %0.6f secs.\033[0m\n"
-  //         "\033[1;36m[ LIO mapping time ]: average: icp: %0.6f secs, map incre: %0.6f secs, total: %0.6f secs.\033[0m\n",
-  //         t2 - t1, t4 - t3, t4 - t0, aver_time_icp, aver_time_map_inre, aver_time_consu);
   printf("\033[1;34m+-------------------------------------------------------------+\033[0m\n");
   printf("\033[1;34m|                         LIO Mapping Time                    |\033[0m\n");
   printf("\033[1;34m+-------------------------------------------------------------+\033[0m\n");
@@ -463,6 +590,79 @@ void LIVMapper::handleLIO()
             << _state.pos_end.transpose() << " " << _state.vel_end.transpose() << " " << _state.bias_g.transpose() << " "
             << _state.bias_a.transpose() << " " << V3D(_state.inv_expo_time, 0, 0).transpose() << " " << feats_undistort->points.size() << std::endl;
 }
+/*LIO整体流程  用当前 LiDAR 点云校正 IMU 预测状态，并更新 Voxel Map。
+
+输入：
+feats_undistort   IMU 去畸变后的点云
+state_propagat    IMU 预测状态
+voxel_map_        之前建立的体素地图
+
+整体流程：
+1. 检查去畸变点云
+   ↓
+2. 体素降采样
+   ↓
+3. 用预测位姿把点云变到世界坐标系
+   ↓
+4. 当前点云与已有 Voxel Map 匹配
+   ↓
+5. 校正姿态、位置、速度和 IMU 零偏
+   ↓
+6. 用校正后的位姿重新变换当前点云
+   ↓
+7. 计算每个点的位置协方差
+   ↓
+8. 把当前点云融合进 Voxel Map
+   ↓
+9. 准备并发布点云、里程计和轨迹
+
+// 1. 降采样
+downSizeFilterSurf.filter(*feats_down_body);
+
+// 2. 使用预测状态转换点云
+transformLidar(
+    _state.rot_end,
+    _state.pos_end,
+    feats_down_body,
+    feats_down_world);
+
+// 3. 第一帧时初始化地图
+if (!lidar_map_inited)
+{
+  voxelmap_manager->BuildVoxelMap();
+}
+
+// 4. 点云与地图匹配，校正状态
+voxelmap_manager->StateEstimation(state_propagat);
+
+// 5. 取回校正结果
+_state = voxelmap_manager->state_;
+_pv_list = voxelmap_manager->pv_list_;
+
+// 6. 使用校正后的状态重新计算世界点
+transformLidar(
+    _state.rot_end,
+    _state.pos_end,
+    feats_down_body,
+    world_lidar);
+
+// 7. 更新每个点的世界坐标和协方差
+voxelmap_manager->pv_list_[i].point_w = ...;
+voxelmap_manager->pv_list_[i].var = var;
+
+// 8. 更新体素地图
+voxelmap_manager->UpdateVoxelMap(
+    voxelmap_manager->pv_list_);
+
+输出：
+_state   校正后的系统状态，包括姿态、位置、速度和 IMU 零偏。
+voxel_map_   加入当前点云后的体素地图，供下一帧匹配。
+_pv_list    当前点及其协方差信息，后续 handleVIO() 会使用。 
+
+processImu() 给出预测，
+handleLIO() 用点云和地图校正预测，
+再用校正后的点云更新地图。
+*/
 
 void LIVMapper::savePCD() 
 {
@@ -619,6 +819,11 @@ void LIVMapper::transformLidar(const Eigen::Matrix3d rot, const Eigen::Vector3d 
 {
   PointCloudXYZI().swap(*trans_cloud);
   trans_cloud->reserve(input_cloud->size());
+
+  /*变换分两步：
+      LiDAR 坐标
+      → 用 extR、extT 变到 IMU 坐标
+      → 用当前姿态 rot、位置 t 变到世界坐标*/
   for (size_t i = 0; i < input_cloud->size(); i++)
   {
     pcl::PointXYZINormal p_c = input_cloud->points[i];
