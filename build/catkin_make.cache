@@ -1,0 +1,2 @@
+FAST-LIVO2:livox_ros_driver:mvs_ros_pkg:rpg_vikit/vikit_common:rpg_vikit/vikit_py:rpg_vikit/vikit_ros
+-DCATKIN_DEVEL_PREFIX=/home/wxc/fastlivo2_ws/devel -DCMAKE_INSTALL_PREFIX=/home/wxc/fastlivo2_ws/install -G Unix Makefiles

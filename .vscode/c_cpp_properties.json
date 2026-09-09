@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "includePath": [
+                "${workspaceFolder}/src/FAST-LIVO2/include",
+                "${workspaceFolder}/src/rpg_vikit/vikit_common/include",
+                "${workspaceFolder}/src/rpg_vikit/vikit_ros/include",
+                "/opt/ros/noetic/include",
+                "/usr/include/eigen3",
+                "/usr/include/pcl-1.10",
+                "/usr/include/opencv4",
+                "/home/wxc/catkin_ws/third_party/Sophus"
+            ],
+            "defines": [
+                "ROS_VERSION=1"
+            ]
+        }
+    ],
+    "version": 4
+}

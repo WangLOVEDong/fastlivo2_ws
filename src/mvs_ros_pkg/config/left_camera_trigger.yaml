@@ -1,0 +1,31 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+width: 1440             #图像宽度
+height: 1080            #图像高度
+Offset_x: 0             #X方向偏置
+Offset_y: 0             #Y方向偏置
+
+TopicName: "left_camera/image"
+
+TriggerEnable: 1 # 0 stands for Off, 1 stands for On
+
+ExposureAutoMode: 0 # 0 手动     1自动调整一次后固定      2连续自动调整
+# 修改前（demo_0804）：ExposureTime: 15000 us
+ExposureTime: 10000 # 手动曝光时间  单位微妙  目前是10ms
+
+# ExposureAutoMode: 2
+# AutoExposureTimeLower: 100
+# AutoExposureTimeUpper: 20000
+
+image_scale: 1 # 1 0.5
+GainAuto: 2 # 增益模式   取值和 曝光模式一样
+Gain: 12 # min: 0   max: 17.0166
+Gamma: 0.9  # 显示亮度曲线；不能恢复已经饱和的纯白区域。   min: 0   max: 17.0166
+GammaSelector: 1 # 0 stands for user, 1 stands for sRGB
+# GammaEnable: 1
+
+PixelFormat: 0 # 0: RGB8, 1: BayerRG8, 2: BayerRG12Packed, 3: BayerGB12Packed
