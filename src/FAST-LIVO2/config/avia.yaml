@@ -51,7 +51,7 @@ imu:  # IMU 相关参数
 lio:  # 激光惯性里程计（LIO）参数
   max_iterations: 5  # 最大迭代次数
   dept_err: 0.02  # 深度误差（单位：米）
-  beam_err: 0.05  # 光束误差（单位：米）
+  beam_err: 0.05  # 光束误差（单位：角度）  需要转换成弧度
   min_eigen_value: 0.0025  # 最小特征值
   voxel_size: 0.5  # 体素滤波尺寸（单位：米）
   max_layer: 2  # 最大层数

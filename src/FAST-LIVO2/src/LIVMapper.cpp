@@ -251,11 +251,6 @@ void LIVMapper::processImu()
   voxelmap_manager->state_ = _state;
   voxelmap_manager->feats_undistort_ = feats_undistort;
 
-  // double t_prop = omp_get_wtime();
-
-  // std::cout << "[ Mapping ] feats_undistort: " << feats_undistort->size() << std::endl;
-  // std::cout << "[ Mapping ] predict cov: " << _state.cov.diagonal().transpose() << std::endl;
-  // std::cout << "[ Mapping ] predict sta: " << state_propagat.pos_end.transpose() << state_propagat.vel_end.transpose() << std::endl;
 }
 
 void LIVMapper::stateEstimationAndMapping() 
@@ -391,7 +386,7 @@ void LIVMapper::handleLIO()
     这里纠正我前面的说法：_pv_list 不是单纯的“平面列表”，主要是点及其不确定性信息的集合。*/
   _pv_list = voxelmap_manager->pv_list_;
   /*总结：
-      MU 预测状态 state_propagat
+      IMU 预测状态 state_propagat
             + 当前点云 + 已有地图
                         ↓
                 StateEstimation()
