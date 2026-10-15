@@ -242,6 +242,32 @@ roslaunch fast_livo mapping_avia.launch
 
 启动后继续保持整套设备静止，不要立刻拿起来移动。
 
+### 第 7 步：启动新终端录制bag
+
+
+source /home/wxc/fastlivo2_ws/scripts/setup_fastlivo2.bash
+mkdir -p /home/wxc/fastlivo2_ws/bags
+cd /home/wxc/fastlivo2_ws/bags
+
+rosbag record -O avia_camera_$(date +%Y%m%d_%H%M%S).bag \
+  /livox/lidar \
+  /livox/imu \
+  /left_camera/image
+
+
+这条命令中：
+- rosbag record：录制指定的 ROS 话题。
+- -O：指定输出文件名；$(date +%Y%m%d_%H%M%S) 自动添加当前日期和时间，避免重名。
+- /livox/lidar：雷达点云。
+- /livox/imu：IMU 数据。
+- /left_camera/image：相机原始图像，录包体积可能较大。
+此时你可以继续在 RViz 看地图，同时移动设备采集数据。 录的是传感器输入，以后可以用它重新运行 FAST-LIVO2；这条命令没有录制算法输出的地图和轨迹。
+结束时，先在录包终端按 Ctrl+C，等待保存完成、命令提示符返回，再停止算法和传感器。不要直接关闭录包终端。
+录完可以检查：
+rosbag info 文件名.bag
+rosbag info：查看录包时长、话题、消息数量和文件大小；把 文件名.bag 换成刚才生成的实际文件名。
+
+
 ## 五、IMU 初始化到底需要多久
 
 当前配置位于：

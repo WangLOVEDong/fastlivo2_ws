@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "FAST-LIVO2：实时建图 + RViz（不录包）",
+      "type": "process",
+      "command": "/bin/bash",
+      "args": ["${workspaceFolder}/scripts/run_fastlivo2.bash", "live"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "focus": true, "panel": "dedicated", "clear": true },
+      "runOptions": { "instanceLimit": 1 }
+    },
+    {
+      "label": "FAST-LIVO2：实时建图 + RViz + 录制 bag",
+      "type": "process",
+      "command": "/bin/bash",
+      "args": ["${workspaceFolder}/scripts/run_fastlivo2.bash", "record"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "focus": true, "panel": "dedicated", "clear": true },
+      "runOptions": { "instanceLimit": 1 }
+    },
+    {
+      "label": "FAST-LIVO2：回放 bag + RViz（读取本地配置）",
+      "type": "process",
+      "command": "/bin/bash",
+      "args": ["${workspaceFolder}/scripts/run_fastlivo2.bash", "replay"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "focus": true, "panel": "dedicated", "clear": true },
+      "runOptions": { "instanceLimit": 1 }
+    }
+  ]
+}

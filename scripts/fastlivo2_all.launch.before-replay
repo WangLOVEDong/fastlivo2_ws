@@ -1,0 +1,21 @@
+<launch>
+  <arg name="record" default="false" />
+  <arg name="bag_path" default="/tmp/fastlivo2.bag" />
+
+  <include file="$(find livox_ros_driver)/launch/livox_lidar_msg.launch">
+    <arg name="rviz_enable" value="false" />
+    <arg name="rosbag_enable" value="false" />
+  </include>
+
+  <node pkg="mvs_ros_pkg" type="grabImgWithTrigger" name="mvs_camera_trigger"
+        args="$(find mvs_ros_pkg)/config/left_camera_trigger.yaml"
+        required="true" output="log" />
+
+  <include file="$(find fast_livo)/launch/mapping_avia.launch">
+    <arg name="rviz" value="true" />
+  </include>
+
+  <node if="$(arg record)" pkg="rosbag" type="record" name="fastlivo2_bag_record"
+        args="--buffsize=512 -O &quot;$(arg bag_path)&quot; /livox/lidar /livox/imu /left_camera/image"
+        required="true" output="screen" />
+</launch>

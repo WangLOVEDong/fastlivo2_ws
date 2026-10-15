@@ -43,6 +43,10 @@ done
 
 export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu${_FASTLIVO2_LD_LIBRARY_PATH:+:${_FASTLIVO2_LD_LIBRARY_PATH}}"
 
+if [[ -d /opt/amdgpu/lib/x86_64-linux-gnu ]]; then
+  export LD_LIBRARY_PATH="/opt/amdgpu/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}"
+fi
+
 if [[ -d /opt/MVS/lib/64 ]]; then
   export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/MVS/lib/64"
 fi

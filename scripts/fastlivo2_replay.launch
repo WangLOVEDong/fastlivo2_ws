@@ -1,0 +1,12 @@
+<launch>
+  <arg name="bag_path" />
+  <param name="use_sim_time" value="true" />
+
+  <include file="$(find fast_livo)/launch/mapping_avia.launch">
+    <arg name="rviz" value="true" />
+  </include>
+
+  <node pkg="rosbag" type="play" name="fastlivo2_bag_player"
+        args="--clock --delay=3 --keep-alive &quot;$(arg bag_path)&quot; --topics /livox/lidar /livox/imu /left_camera/image"
+        required="true" output="screen" />
+</launch>
