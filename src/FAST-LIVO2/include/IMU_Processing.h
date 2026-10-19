@@ -19,7 +19,8 @@ which is included as part of this source code package.
 #include <nav_msgs/Odometry.h>
 #include <utils/so3_math.h>
 #include <fstream>
-const bool time_list(PointType &x, PointType &y) { return (x.curvature < y.curvature); }
+// x/y：待排序点，curvature 是相对采样时间(ms)。inline 允许多个编译单元包含本头文件。
+inline bool time_list(PointType &x, PointType &y) { return (x.curvature < y.curvature); }
 
 /// *************IMU Process and undistortion
 class ImuProcess
@@ -62,7 +63,6 @@ public:
   bool imu_need_init = true;
   M3D Eye3d;
   V3D Zero3d;
-  int lidar_type;
 
 private:
   void IMU_init(const MeasureGroup &meas, StatesGroup &state, int &N);

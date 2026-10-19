@@ -35,15 +35,6 @@ using namespace Sophus;
 #define MAT_FROM_ARRAY(v) v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8]
 #define DEBUG_FILE_DIR(name) (string(string(ROOT_DIR) + "Log/" + name))
 
-enum LID_TYPE
-{
-  AVIA = 1,
-  VELO16 = 2,
-  OUST64 = 3,
-  L515 = 4,
-  XT32 = 5,
-  PANDAR128 = 6
-};
 enum SLAM_MODE
 {
   ONLY_LO = 0,
@@ -73,6 +64,7 @@ struct MeasureGroup
 
 struct LidarMeasureGroup
 {
+  // 时间单位统一为秒；点云 curvature 例外，它借存相对时间(ms)。
   double lidar_frame_beg_time;
   double lidar_frame_end_time;
   double last_lio_update_time;
@@ -80,7 +72,7 @@ struct LidarMeasureGroup
   PointCloudXYZI::Ptr pcl_proc_cur;
   PointCloudXYZI::Ptr pcl_proc_next;
   deque<struct MeasureGroup> measures;
-  EKF_STATE lio_vio_flg;
+  EKF_STATE lio_vio_flg; // WAIT/LIO/VIO/LO：主循环下一步应该执行哪种更新。
   int lidar_scan_index_now;
 
   LidarMeasureGroup()
@@ -124,6 +116,8 @@ typedef struct pointWithVar
 
 struct StatesGroup
 {
+  // 19维误差排列：[姿态3, 位置3, 逆曝光1, 速度3, 陀螺零偏3, 加速度零偏3, 重力3]。
+  // += 将小误差注入名义状态：旋转右乘 Exp(δθ)，其余状态做加法。
   StatesGroup()
   {
     this->rot_end = M3D::Identity();
@@ -211,14 +205,14 @@ struct StatesGroup
     this->vel_end = V3D::Zero();
   }
 
-  M3D rot_end;                              // the estimated attitude (rotation matrix) at the end lidar point
-  V3D pos_end;                              // the estimated position at the end lidar point (world frame)
-  V3D vel_end;                              // the estimated velocity at the end lidar point (world frame)
-  double inv_expo_time;                     // the estimated inverse exposure time (no scale)
-  V3D bias_g;                               // gyroscope bias
-  V3D bias_a;                               // accelerator bias
-  V3D gravity;                              // the estimated gravity acceleration
-  Matrix<double, DIM_STATE, DIM_STATE> cov; // states covariance
+  M3D rot_end; // 当前更新时刻的 IMU→世界旋转（名字沿用上游，不一定是完整扫描末尾）。
+  V3D pos_end; // IMU 世界系位置(m)。
+  V3D vel_end; // IMU 世界系速度(m/s)。
+  double inv_expo_time; // 视觉亮度模型的逆曝光尺度。
+  V3D bias_g; // 陀螺仪零偏(rad/s)。
+  V3D bias_a; // 加速度计零偏(m/s²)。
+  V3D gravity; // 世界系重力加速度(m/s²)。
+  Matrix<double, DIM_STATE, DIM_STATE> cov; // 19×19 误差状态协方差。
 };
 
 template <typename T>

@@ -124,7 +124,12 @@ add_library(vio src/vio.cpp src/frame.cpp src/visual_point.cpp)
 add_library(lio src/voxel_map.cpp)
 add_library(pre src/preprocess.cpp)
 add_library(imu_proc src/IMU_Processing.cpp)
-add_library(laser_mapping src/LIVMapper.cpp)
+# 调度 / 输入同步 / 输出保存分开，数学处理仍在原 LIO、VIO、IMU 模块。
+add_library(laser_mapping
+  src/LIVMapper.cpp
+  src/LIVMapper_sync.cpp
+  src/LIVMapper_output.cpp
+)
 
 # Add the main executable
 add_executable(fastlivo_mapping src/main.cpp)

@@ -70,17 +70,47 @@ FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.s"
 	cd /home/wxc/fastlivo2_ws/build/FAST-LIVO2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper.cpp -o CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.s
 
+FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o: FAST-LIVO2/CMakeFiles/laser_mapping.dir/flags.make
+FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o: /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_sync.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o"
+	cd /home/wxc/fastlivo2_ws/build/FAST-LIVO2 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o -c /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_sync.cpp
+
+FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.i"
+	cd /home/wxc/fastlivo2_ws/build/FAST-LIVO2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_sync.cpp > CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.i
+
+FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.s"
+	cd /home/wxc/fastlivo2_ws/build/FAST-LIVO2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_sync.cpp -o CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.s
+
+FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o: FAST-LIVO2/CMakeFiles/laser_mapping.dir/flags.make
+FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o: /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_output.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o"
+	cd /home/wxc/fastlivo2_ws/build/FAST-LIVO2 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o -c /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_output.cpp
+
+FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.i"
+	cd /home/wxc/fastlivo2_ws/build/FAST-LIVO2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_output.cpp > CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.i
+
+FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.s"
+	cd /home/wxc/fastlivo2_ws/build/FAST-LIVO2 && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_output.cpp -o CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.s
+
 # Object files for target laser_mapping
 laser_mapping_OBJECTS = \
-"CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.o"
+"CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.o" \
+"CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o" \
+"CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o"
 
 # External object files for target laser_mapping
 laser_mapping_EXTERNAL_OBJECTS =
 
 /home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.so: FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.o
+/home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.so: FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o
+/home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.so: FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o
 /home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.so: FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make
 /home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.so: FAST-LIVO2/CMakeFiles/laser_mapping.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library /home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library /home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.so"
 	cd /home/wxc/fastlivo2_ws/build/FAST-LIVO2 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/laser_mapping.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

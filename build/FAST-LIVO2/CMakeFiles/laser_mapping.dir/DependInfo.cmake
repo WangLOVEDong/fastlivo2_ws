@@ -5,6 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper.cpp" "/home/wxc/fastlivo2_ws/build/FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.o"
+  "/home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_output.cpp" "/home/wxc/fastlivo2_ws/build/FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o"
+  "/home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/LIVMapper_sync.cpp" "/home/wxc/fastlivo2_ws/build/FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

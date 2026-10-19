@@ -21,16 +21,10 @@ FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/src/main.cpp.o
  /home/wxc/fastlivo2_ws/src/FAST-LIVO2/src/main.cpp
  /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/abstract_camera.h
  /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/aligned_mem.h
- /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/atan_camera.h
- /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/equidistant_camera.h
  /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/math_utils.h
- /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/omni_camera.h
  /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/pinhole_camera.h
- /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/polynomial_camera.h
  /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/robust_cost.h
  /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_common/include/vikit/vision.h
- /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_ros/include/vikit/camera_loader.h
- /home/wxc/fastlivo2_ws/src/rpg_vikit/vikit_ros/include/vikit/params_helper.h
  /opt/ros/noetic/include/cv_bridge/cv_bridge.h
  /opt/ros/noetic/include/geometry_msgs/Point.h
  /opt/ros/noetic/include/geometry_msgs/PointStamped.h
@@ -58,11 +52,6 @@ FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/src/main.cpp.o
  /opt/ros/noetic/include/image_transport/transport_hints.h
  /opt/ros/noetic/include/nav_msgs/Odometry.h
  /opt/ros/noetic/include/nav_msgs/Path.h
- /opt/ros/noetic/include/pcl_conversions/pcl_conversions.h
- /opt/ros/noetic/include/pcl_msgs/ModelCoefficients.h
- /opt/ros/noetic/include/pcl_msgs/PointIndices.h
- /opt/ros/noetic/include/pcl_msgs/PolygonMesh.h
- /opt/ros/noetic/include/pcl_msgs/Vertices.h
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h
  /opt/ros/noetic/include/ros/assert.h
@@ -123,8 +112,6 @@ FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/src/main.cpp.o
  /opt/ros/noetic/include/sensor_msgs/CompressedImage.h
  /opt/ros/noetic/include/sensor_msgs/Image.h
  /opt/ros/noetic/include/sensor_msgs/Imu.h
- /opt/ros/noetic/include/sensor_msgs/PointCloud2.h
- /opt/ros/noetic/include/sensor_msgs/PointField.h
  /opt/ros/noetic/include/sensor_msgs/RegionOfInterest.h
  /opt/ros/noetic/include/sensor_msgs/image_encodings.h
  /opt/ros/noetic/include/std_msgs/ColorRGBA.h
@@ -574,14 +561,12 @@ FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/src/main.cpp.o
  /usr/include/opencv4/opencv2/viz/viz3d.hpp
  /usr/include/opencv4/opencv2/viz/vizcore.hpp
  /usr/include/opencv4/opencv2/viz/widgets.hpp
- /usr/include/pcl-1.10/pcl/ModelCoefficients.h
  /usr/include/pcl-1.10/pcl/PCLHeader.h
  /usr/include/pcl-1.10/pcl/PCLImage.h
  /usr/include/pcl-1.10/pcl/PCLPointCloud2.h
  /usr/include/pcl-1.10/pcl/PCLPointField.h
  /usr/include/pcl-1.10/pcl/PointIndices.h
  /usr/include/pcl-1.10/pcl/PolygonMesh.h
- /usr/include/pcl-1.10/pcl/TextureMesh.h
  /usr/include/pcl-1.10/pcl/Vertices.h
  /usr/include/pcl-1.10/pcl/cloud_iterator.h
  /usr/include/pcl-1.10/pcl/common/centroid.h
@@ -608,12 +593,6 @@ FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/src/main.cpp.o
  /usr/include/pcl-1.10/pcl/impl/cloud_iterator.hpp
  /usr/include/pcl-1.10/pcl/impl/pcl_base.hpp
  /usr/include/pcl-1.10/pcl/impl/point_types.hpp
- /usr/include/pcl-1.10/pcl/io/boost.h
- /usr/include/pcl-1.10/pcl/io/file_io.h
- /usr/include/pcl-1.10/pcl/io/impl/pcd_io.hpp
- /usr/include/pcl-1.10/pcl/io/low_level_io.h
- /usr/include/pcl-1.10/pcl/io/lzf.h
- /usr/include/pcl-1.10/pcl/io/pcd_io.h
  /usr/include/pcl-1.10/pcl/make_shared.h
  /usr/include/pcl-1.10/pcl/pcl_base.h
  /usr/include/pcl-1.10/pcl/pcl_config.h

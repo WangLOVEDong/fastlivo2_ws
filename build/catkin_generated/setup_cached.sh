@@ -7,10 +7,5 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH='/home/wxc/fastlivo2_ws/devel:/opt/ros/noetic:/home/wxc/catkin_ws/third_party/Sophus/install:/home/wxc/catkin_ws/third_party/Sophus/install'
-export LD_LIBRARY_PATH="/home/wxc/fastlivo2_ws/devel/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/wxc/fastlivo2_ws/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LD_LIBRARY_PATH='/home/wxc/fastlivo2_ws/devel/lib:/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu:/opt/amdgpu/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:/home/wxc/catkin_ws/third_party/Sophus/install/lib:/opt/MVS/lib/64'
 export PWD='/home/wxc/fastlivo2_ws/build'
-export PYTHONPATH="/home/wxc/fastlivo2_ws/devel/lib/python3/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES='/home/wxc/fastlivo2_ws/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/wxc/fastlivo2_ws/src:$ROS_PACKAGE_PATH"

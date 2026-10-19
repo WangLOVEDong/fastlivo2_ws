@@ -1,104 +1,48 @@
-# FAST-LIVO2
+# FAST-LIVO2：Avia 实机学习版
 
-## FAST-LIVO2: Fast, Direct LiDAR-Inertial-Visual Odometry
+当前入口是 [docs/学习导航.md](docs/学习导航.md)。建议同时打开
+`src/main.cpp`、`src/LIVMapper.cpp` 和 `include/LIVMapper.h` 阅读。
 
-### 📢 News
+此版本围绕当前 Livox Avia + Livox IMU + MVS 相机整理，保留 LIO、VIO、
+彩色点云、轨迹、地图保存及回放所需代码。原项目说明和论文链接保存在
+[docs/UPSTREAM_README.md](docs/UPSTREAM_README.md)，许可证仍为 [LICENSE](LICENSE)。
 
-- 🔓 **2025-01-23**: Code released!  
-- 🎉 **2024-10-01**: Accepted by **T-RO '24**!  
-- 🚀 **2024-07-02**: Conditionally accepted.
+```text
+main.cpp
+  → LIVMapper.cpp           初始化、IMU处理、LIO/VIO调度
+  → LIVMapper_sync.cpp      传感器回调、缓存、时间同步
+  → IMU_Processing.cpp      IMU初始化、状态传播、去畸变
+  → voxel_map.cpp           点面残差、迭代滤波、体素平面地图
+  → vio.cpp                 视觉patch、光度残差、视觉更新
+  → LIVMapper_output.cpp    ROS输出、图像着色、PCD保存
+```
 
-### 📬 Contact
+## 启动
 
-If you have any questions, please feel free to contact: Chunran Zheng [zhengcr@connect.hku.hk](mailto:zhengcr@connect.hku.hk).
-
-## 1. Introduction
-
-FAST-LIVO2 is an efficient and accurate LiDAR-inertial-visual fusion localization and mapping system, demonstrating significant potential for real-time 3D reconstruction and onboard robotic localization in severely degraded environments.
-
-<div align="center">
-    <img src="pics/Framework.png" width = 100% >
-</div>
-
-### 1.1 Related video
-
-Our accompanying video is now available on [**Bilibili**](https://www.bilibili.com/video/BV1Ezxge7EEi) and [**YouTube**](https://youtu.be/6dF2DzgbtlY).
-
-### 1.2 Related paper
-
-[FAST-LIVO2: Fast, Direct LiDAR-Inertial-Visual Odometry](https://arxiv.org/pdf/2408.14035)  
-
-[FAST-LIVO: Fast and Tightly-coupled Sparse-Direct LiDAR-Inertial-Visual Odometry](https://arxiv.org/pdf/2203.00893)
-
-### 1.3 Our hard-synchronized equipment
-
-We open-source our handheld device, including CAD files, synchronization scheme, STM32 source code, wiring instructions, and sensor ROS driver. Access these resources at this repository: [**LIV_handhold**](https://github.com/xuankuzcr/LIV_handhold).
-
-### 1.4 Our associate dataset: FAST-LIVO2-Dataset
-Our associate dataset [**FAST-LIVO2-Dataset**](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/zhengcr_connect_hku_hk/ErdFNQtjMxZOorYKDTtK4ugBkogXfq1OfDm90GECouuIQA?e=KngY9Z) used for evaluation is also available online.
-
-### 1.5 Our LiDAR-camera calibration method
-The [**FAST-Calib**](https://github.com/hku-mars/FAST-Calib) toolkit is recommended. Its output extrinsic parameters can be directly filled into the YAML file. 
-
-## 2. Prerequisited
-
-### 2.1 Ubuntu and ROS
-
-Ubuntu 18.04~20.04.  [ROS Installation](http://wiki.ros.org/ROS/Installation).
-
-### 2.2 PCL && Eigen && OpenCV
-
-PCL>=1.8, Follow [PCL Installation](https://pointclouds.org/). 
-
-Eigen>=3.3.4, Follow [Eigen Installation](https://eigen.tuxfamily.org/index.php?title=Main_Page).
-
-OpenCV>=4.2, Follow [Opencv Installation](http://opencv.org/).
-
-### 2.3 Sophus
-
-Sophus Installation for the non-templated/double-only version.
+在 `/home/wxc/fastlivo2_ws` 下编译：
 
 ```bash
-git clone https://github.com/strasdat/Sophus.git
-cd Sophus
-git checkout a621ff
-mkdir build && cd build && cmake ..
-make
-sudo make install
+source /home/wxc/fastlivo2_ws/scripts/setup_fastlivo2.bash
+catkin_make --pkg fast_livo -j2 -l2
+rospack find fast_livo
 ```
 
-### 2.4 Vikit
-
-Vikit contains camera models, some math and interpolation functions that we need. Vikit is a catkin project, therefore, download it into your catkin workspace source folder.
+`rospack find` 应返回 `/home/wxc/fastlivo2_ws/src/FAST-LIVO2`。
+现有 VS Code 实时建图/录包/回放任务继续使用；回放文件仍通过工作区根目录的
+`fastlivo2_replay.json` 配置。手动启动算法仍使用：
 
 ```bash
-# Different from the one used in fast-livo1
-cd catkin_ws/src
-git clone https://github.com/xuankuzcr/rpg_vikit.git 
-```
-
-## 3. Build
-
-Clone the repository and catkin_make:
-
-```
-cd ~/catkin_ws/src
-git clone https://github.com/hku-mars/FAST-LIVO2
-cd ../
-catkin_make
-source ~/catkin_ws/devel/setup.bash
-```
-
-## 4. Run our examples
-
-Download our collected rosbag files via OneDrive ([**FAST-LIVO2-Dataset**](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/zhengcr_connect_hku_hk/ErdFNQtjMxZOorYKDTtK4ugBkogXfq1OfDm90GECouuIQA?e=KngY9Z)). 
-
-```
 roslaunch fast_livo mapping_avia.launch
-rosbag play YOUR_DOWNLOADED.bag
 ```
 
+手动模式还需要原有 Livox/MVS 驱动或 bag 提供三路数据；Ctrl+C 结束算法。
 
-## 5. License
+## 范围
 
-The source code of this package is released under the [**GPLv2**](http://www.gnu.org/licenses/) license. For commercial use, please contact me at <zhengcr@connect.hku.hk> and Prof. Fu Zhang at <fuzhang@hku.hk> to discuss an alternative license.
+- 雷达输入固定为 `livox_ros_driver/CustomMsg`。`preprocess/lidar_type` 保留为兼容参数，只允许 `1`。
+- 使用过滤后的原始点，不再提供旧的角点/平面点预提取；`feature_extract_enabled` 必须为 `false`。
+- 保留相机开关、ONLY_LIO/ONLY_LO/LIVO、原视觉选项、局部地图滑动、PCD/COLMAP、MAVROS 和高频 IMU 输出。
+- 删除其他雷达/数据集的处理器、配置和 RViz 示例，以及没有实际发布数据的占位话题。
+- 相机模型、实机标定、时间偏移、算法数值公式和现有驱动均沿用当前版本。
+
+具体改动、验证范围和源码阅读顺序见学习导航。

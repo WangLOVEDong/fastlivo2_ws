@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "/home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.pdb"
   "/home/wxc/fastlivo2_ws/devel/lib/liblaser_mapping.so"
   "CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.o"
+  "CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o"
+  "CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1652,7 +1652,7 @@ livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/all: livo
 livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/all: livox_ros_driver/CMakeFiles/_livox_ros_driver_generate_messages_check_deps_CustomPoint.dir/all
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/depend
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=21,22,23 "Built target livox_ros_driver_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=23,24,25 "Built target livox_ros_driver_generate_messages_eus"
 .PHONY : livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1733,7 +1733,7 @@ livox_ros_driver/CMakeFiles/livox_ros_driver_gennodejs.dir/clean:
 livox_ros_driver/CMakeFiles/livox_ros_driver_node.dir/all: livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/all
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_node.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_node.dir/depend
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_node.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=31,32,33,34,35,36,37,38,39,40,41,42,43,44 "Built target livox_ros_driver_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=33,34,35,36,37,38,39,40,41,42,43,44,45,46 "Built target livox_ros_driver_node"
 .PHONY : livox_ros_driver/CMakeFiles/livox_ros_driver_node.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1924,7 +1924,7 @@ livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/all: l
 livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/all: livox_ros_driver/CMakeFiles/_livox_ros_driver_generate_messages_check_deps_CustomPoint.dir/all
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/depend
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=26,27 "Built target livox_ros_driver_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=28,29 "Built target livox_ros_driver_generate_messages_nodejs"
 .PHONY : livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2304,7 +2304,7 @@ livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/all: livo
 livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/all: livox_ros_driver/CMakeFiles/_livox_ros_driver_generate_messages_check_deps_CustomPoint.dir/all
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/depend
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=19,20 "Built target livox_ros_driver_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=21,22 "Built target livox_ros_driver_generate_messages_cpp"
 .PHONY : livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2387,7 +2387,7 @@ livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/all: liv
 livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/all: livox_ros_driver/CMakeFiles/_livox_ros_driver_generate_messages_check_deps_CustomPoint.dir/all
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/depend
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=24,25 "Built target livox_ros_driver_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=26,27 "Built target livox_ros_driver_generate_messages_lisp"
 .PHONY : livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3068,7 +3068,7 @@ livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_py.dir/all: livox
 livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_py.dir/all: livox_ros_driver/CMakeFiles/_livox_ros_driver_generate_messages_check_deps_CustomPoint.dir/all
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_py.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_py.dir/depend
 	$(MAKE) -f livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_py.dir/build.make livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=28,29,30 "Built target livox_ros_driver_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=30,31,32 "Built target livox_ros_driver_generate_messages_py"
 .PHONY : livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3149,7 +3149,7 @@ livox_ros_driver/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean:
 rpg_vikit/vikit_common/CMakeFiles/test_vk_common_camera.dir/all: rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/all
 	$(MAKE) -f rpg_vikit/vikit_common/CMakeFiles/test_vk_common_camera.dir/build.make rpg_vikit/vikit_common/CMakeFiles/test_vk_common_camera.dir/depend
 	$(MAKE) -f rpg_vikit/vikit_common/CMakeFiles/test_vk_common_camera.dir/build.make rpg_vikit/vikit_common/CMakeFiles/test_vk_common_camera.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=47,48 "Built target test_vk_common_camera"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=49,50 "Built target test_vk_common_camera"
 .PHONY : rpg_vikit/vikit_common/CMakeFiles/test_vk_common_camera.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3176,7 +3176,7 @@ rpg_vikit/vikit_common/CMakeFiles/test_vk_common_camera.dir/clean:
 rpg_vikit/vikit_common/CMakeFiles/test_vk_common_patch_score.dir/all: rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/all
 	$(MAKE) -f rpg_vikit/vikit_common/CMakeFiles/test_vk_common_patch_score.dir/build.make rpg_vikit/vikit_common/CMakeFiles/test_vk_common_patch_score.dir/depend
 	$(MAKE) -f rpg_vikit/vikit_common/CMakeFiles/test_vk_common_patch_score.dir/build.make rpg_vikit/vikit_common/CMakeFiles/test_vk_common_patch_score.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=49,50 "Built target test_vk_common_patch_score"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=51,52 "Built target test_vk_common_patch_score"
 .PHONY : rpg_vikit/vikit_common/CMakeFiles/test_vk_common_patch_score.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3203,7 +3203,7 @@ rpg_vikit/vikit_common/CMakeFiles/test_vk_common_patch_score.dir/clean:
 rpg_vikit/vikit_common/CMakeFiles/test_vk_common_triangulation.dir/all: rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/all
 	$(MAKE) -f rpg_vikit/vikit_common/CMakeFiles/test_vk_common_triangulation.dir/build.make rpg_vikit/vikit_common/CMakeFiles/test_vk_common_triangulation.dir/depend
 	$(MAKE) -f rpg_vikit/vikit_common/CMakeFiles/test_vk_common_triangulation.dir/build.make rpg_vikit/vikit_common/CMakeFiles/test_vk_common_triangulation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=51,52 "Built target test_vk_common_triangulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=53,54 "Built target test_vk_common_triangulation"
 .PHONY : rpg_vikit/vikit_common/CMakeFiles/test_vk_common_triangulation.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3230,7 +3230,7 @@ rpg_vikit/vikit_common/CMakeFiles/test_vk_common_triangulation.dir/clean:
 rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/all:
 	$(MAKE) -f rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/build.make rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/depend
 	$(MAKE) -f rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/build.make rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=53,54,55,56,57,58,59,60,61,62,63,64,65 "Built target vikit_common"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=55,56,57,58,59,60,61,62,63,64,65,66,67 "Built target vikit_common"
 .PHONY : rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3284,7 +3284,7 @@ rpg_vikit/vikit_py/CMakeFiles/_catkin_empty_exported_target.dir/clean:
 rpg_vikit/vikit_ros/CMakeFiles/vikit_ros.dir/all: rpg_vikit/vikit_common/CMakeFiles/vikit_common.dir/all
 	$(MAKE) -f rpg_vikit/vikit_ros/CMakeFiles/vikit_ros.dir/build.make rpg_vikit/vikit_ros/CMakeFiles/vikit_ros.dir/depend
 	$(MAKE) -f rpg_vikit/vikit_ros/CMakeFiles/vikit_ros.dir/build.make rpg_vikit/vikit_ros/CMakeFiles/vikit_ros.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=66,67 "Built target vikit_ros"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=68,69 "Built target vikit_ros"
 .PHONY : rpg_vikit/vikit_ros/CMakeFiles/vikit_ros.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3581,7 +3581,7 @@ FAST-LIVO2/CMakeFiles/nav_msgs_generate_messages_py.dir/clean:
 FAST-LIVO2/CMakeFiles/vio.dir/all:
 	$(MAKE) -f FAST-LIVO2/CMakeFiles/vio.dir/build.make FAST-LIVO2/CMakeFiles/vio.dir/depend
 	$(MAKE) -f FAST-LIVO2/CMakeFiles/vio.dir/build.make FAST-LIVO2/CMakeFiles/vio.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=68,69,70,71 "Built target vio"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=70,71,72,73 "Built target vio"
 .PHONY : FAST-LIVO2/CMakeFiles/vio.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3635,12 +3635,12 @@ FAST-LIVO2/CMakeFiles/imu_proc.dir/clean:
 FAST-LIVO2/CMakeFiles/laser_mapping.dir/all:
 	$(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/depend
 	$(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=15,16 "Built target laser_mapping"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=15,16,17,18 "Built target laser_mapping"
 .PHONY : FAST-LIVO2/CMakeFiles/laser_mapping.dir/all
 
 # Build rule for subdir invocation for target.
 FAST-LIVO2/CMakeFiles/laser_mapping.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wxc/fastlivo2_ws/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wxc/fastlivo2_ws/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 FAST-LIVO2/CMakeFiles/laser_mapping.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/wxc/fastlivo2_ws/build/CMakeFiles 0
 .PHONY : FAST-LIVO2/CMakeFiles/laser_mapping.dir/rule
@@ -3662,7 +3662,7 @@ FAST-LIVO2/CMakeFiles/laser_mapping.dir/clean:
 FAST-LIVO2/CMakeFiles/pre.dir/all:
 	$(MAKE) -f FAST-LIVO2/CMakeFiles/pre.dir/build.make FAST-LIVO2/CMakeFiles/pre.dir/depend
 	$(MAKE) -f FAST-LIVO2/CMakeFiles/pre.dir/build.make FAST-LIVO2/CMakeFiles/pre.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=45,46 "Built target pre"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=47,48 "Built target pre"
 .PHONY : FAST-LIVO2/CMakeFiles/pre.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3689,7 +3689,7 @@ FAST-LIVO2/CMakeFiles/pre.dir/clean:
 FAST-LIVO2/CMakeFiles/lio.dir/all:
 	$(MAKE) -f FAST-LIVO2/CMakeFiles/lio.dir/build.make FAST-LIVO2/CMakeFiles/lio.dir/depend
 	$(MAKE) -f FAST-LIVO2/CMakeFiles/lio.dir/build.make FAST-LIVO2/CMakeFiles/lio.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=17,18 "Built target lio"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=19,20 "Built target lio"
 .PHONY : FAST-LIVO2/CMakeFiles/lio.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3727,7 +3727,7 @@ FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/all: FAST-LIVO2/CMakeFiles/lio.dir/al
 
 # Build rule for subdir invocation for target.
 FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wxc/fastlivo2_ws/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wxc/fastlivo2_ws/build/CMakeFiles 31
 	$(MAKE) -f CMakeFiles/Makefile2 FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/wxc/fastlivo2_ws/build/CMakeFiles 0
 .PHONY : FAST-LIVO2/CMakeFiles/fastlivo_mapping.dir/rule

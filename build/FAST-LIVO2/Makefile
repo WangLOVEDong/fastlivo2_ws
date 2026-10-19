@@ -386,6 +386,60 @@ src/LIVMapper.cpp.s:
 	cd /home/wxc/fastlivo2_ws/build && $(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper.cpp.s
 .PHONY : src/LIVMapper.cpp.s
 
+src/LIVMapper_output.o: src/LIVMapper_output.cpp.o
+
+.PHONY : src/LIVMapper_output.o
+
+# target to build an object file
+src/LIVMapper_output.cpp.o:
+	cd /home/wxc/fastlivo2_ws/build && $(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.o
+.PHONY : src/LIVMapper_output.cpp.o
+
+src/LIVMapper_output.i: src/LIVMapper_output.cpp.i
+
+.PHONY : src/LIVMapper_output.i
+
+# target to preprocess a source file
+src/LIVMapper_output.cpp.i:
+	cd /home/wxc/fastlivo2_ws/build && $(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.i
+.PHONY : src/LIVMapper_output.cpp.i
+
+src/LIVMapper_output.s: src/LIVMapper_output.cpp.s
+
+.PHONY : src/LIVMapper_output.s
+
+# target to generate assembly for a file
+src/LIVMapper_output.cpp.s:
+	cd /home/wxc/fastlivo2_ws/build && $(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_output.cpp.s
+.PHONY : src/LIVMapper_output.cpp.s
+
+src/LIVMapper_sync.o: src/LIVMapper_sync.cpp.o
+
+.PHONY : src/LIVMapper_sync.o
+
+# target to build an object file
+src/LIVMapper_sync.cpp.o:
+	cd /home/wxc/fastlivo2_ws/build && $(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.o
+.PHONY : src/LIVMapper_sync.cpp.o
+
+src/LIVMapper_sync.i: src/LIVMapper_sync.cpp.i
+
+.PHONY : src/LIVMapper_sync.i
+
+# target to preprocess a source file
+src/LIVMapper_sync.cpp.i:
+	cd /home/wxc/fastlivo2_ws/build && $(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.i
+.PHONY : src/LIVMapper_sync.cpp.i
+
+src/LIVMapper_sync.s: src/LIVMapper_sync.cpp.s
+
+.PHONY : src/LIVMapper_sync.s
+
+# target to generate assembly for a file
+src/LIVMapper_sync.cpp.s:
+	cd /home/wxc/fastlivo2_ws/build && $(MAKE) -f FAST-LIVO2/CMakeFiles/laser_mapping.dir/build.make FAST-LIVO2/CMakeFiles/laser_mapping.dir/src/LIVMapper_sync.cpp.s
+.PHONY : src/LIVMapper_sync.cpp.s
+
 src/frame.o: src/frame.cpp.o
 
 .PHONY : src/frame.o
@@ -578,6 +632,12 @@ help:
 	@echo "... src/LIVMapper.o"
 	@echo "... src/LIVMapper.i"
 	@echo "... src/LIVMapper.s"
+	@echo "... src/LIVMapper_output.o"
+	@echo "... src/LIVMapper_output.i"
+	@echo "... src/LIVMapper_output.s"
+	@echo "... src/LIVMapper_sync.o"
+	@echo "... src/LIVMapper_sync.i"
+	@echo "... src/LIVMapper_sync.s"
 	@echo "... src/frame.o"
 	@echo "... src/frame.i"
 	@echo "... src/frame.s"

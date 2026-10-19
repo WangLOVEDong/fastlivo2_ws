@@ -64,8 +64,8 @@ livox_ros_driver/CMakeFiles/livox_ros_driver_generate_messages_nodejs: /home/wxc
 
 /home/wxc/fastlivo2_ws/devel/share/gennodejs/ros/livox_ros_driver/msg/CustomMsg.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/wxc/fastlivo2_ws/devel/share/gennodejs/ros/livox_ros_driver/msg/CustomMsg.js: /home/wxc/fastlivo2_ws/src/livox_ros_driver/msg/CustomMsg.msg
-/home/wxc/fastlivo2_ws/devel/share/gennodejs/ros/livox_ros_driver/msg/CustomMsg.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/wxc/fastlivo2_ws/devel/share/gennodejs/ros/livox_ros_driver/msg/CustomMsg.js: /home/wxc/fastlivo2_ws/src/livox_ros_driver/msg/CustomPoint.msg
+/home/wxc/fastlivo2_ws/devel/share/gennodejs/ros/livox_ros_driver/msg/CustomMsg.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/wxc/fastlivo2_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from livox_ros_driver/CustomMsg.msg"
 	cd /home/wxc/fastlivo2_ws/build/livox_ros_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/wxc/fastlivo2_ws/src/livox_ros_driver/msg/CustomMsg.msg -Ilivox_ros_driver:/home/wxc/fastlivo2_ws/src/livox_ros_driver/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p livox_ros_driver -o /home/wxc/fastlivo2_ws/devel/share/gennodejs/ros/livox_ros_driver/msg
 
